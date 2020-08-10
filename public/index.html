@@ -8,5 +8,20 @@
   </head>
   <body>
     <h1>Serverless Sticker Shop</h1>
+    <template id="product">
+      <img src="" alt="" />
+      <h2></h2>
+      <p class="description"></p>
+      <p class="price"></p>
+      <form action="" method="post">
+        <input type="hidden" name="sku" value="" />
+        <button type="submit">Buy Now</button>
+      </form>
+    </template>
+    <script type="module">
+      import { loadProducts } from './js/load-products.js'
+
+      loadProducts()
+    </script>
   </body>
 </html>
