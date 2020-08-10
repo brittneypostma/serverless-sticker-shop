@@ -45,11 +45,10 @@ function createTemplate(item) {
 }
 
 export async function loadProducts() {
-  const data = await fetch('/.netlify/functions/get-products')
+  const prices = await fetch('/.netlify/functions/get-products')
     .then(res => res.json())
     .catch(err => console.error(err))
-  console.log(data)
-  // data.data.forEach(product => {
-  //   document.body.appendChild(createTemplate(product))
-  // })
+  prices.data.forEach(price => {
+    document.body.appendChild(createTemplate(price.product))
+  })
 }
