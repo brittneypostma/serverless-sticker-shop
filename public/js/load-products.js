@@ -27,7 +27,7 @@ async function handleFormSubmit(e) {
 
 
 function createTemplate(item) {
-  const template = document.querySelector('#product')
+  const template = document.querySelector('#template')
   const product = template.content.cloneNode(true)
 
   const img = product.querySelector('img')
@@ -35,7 +35,6 @@ function createTemplate(item) {
   img.alt = item.name
 
   product.querySelector('h2').innerText = item.name
-  product.querySelector('.description').innerText = item.description
   product.querySelector('[name=sku]').value = item.id
 
   const form = product.querySelector('form')
@@ -45,10 +44,11 @@ function createTemplate(item) {
 }
 
 export async function loadProducts() {
+  const main = document.querySelector('main')
   const prices = await fetch('/.netlify/functions/get-products')
     .then(res => res.json())
     .catch(err => console.error(err))
   prices.data.forEach(price => {
-    document.body.appendChild(createTemplate(price.product))
+    main.appendChild(createTemplate(price.product))
   })
 }

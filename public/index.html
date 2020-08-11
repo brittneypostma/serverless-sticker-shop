@@ -4,21 +4,23 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
-    <title>Serverless Sticker Shop</title>
+    <title>Sticker Shop</title>
   </head>
   <body>
-    <h1>Serverless Sticker Shop</h1>
-    <template id="product">
-      <img src="" alt="" />
-      <h2></h2>
-      <p class="description"></p>
-      <p class="price">$3.00</p>
-      <form action="" method="post">
-        <input type="hidden" name="sku" value="" />
-        <button type="submit">Buy Now</button>
-      </form>
-    </template>
-
+    <h1>Sticker Shop</h1>
+    <main>
+      <template id="template">
+        <div class="product">
+          <img src="" alt="" />
+          <h2></h2>
+          <p class="price">$3.00</p>
+          <form action="" method="post">
+            <input type="hidden" name="sku" value="" />
+            <button type="submit">Buy Now</button>
+          </form>
+        </div>
+      </template>
+    </main>
     <script src="https://js.stripe.com/v3/"></script>
     <script type="module">
       import { loadProducts } from './js/load-products.js'
