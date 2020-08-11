@@ -1,23 +1,26 @@
-async function handleFormSubmit(e) {
-  e.preventDefault()
-  const form = new FormData(e.target)
+async function handleFormSubmit(event) {
+  event.preventDefault()
+  const form = new FormData(event.target)
 
   const data = {
-    sku: form.get('sku'), quantity: 1
+    sku: form.get('sku'),
+    quantity: 1
   }
 
-  const res = await fetch('/.netlify/functions/create-checkout', {
+  const response = await fetch('/.netlify/functions/create-checkout', {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
-    body: JSON.stringify(data)
-  }).then(res => res.json)
-
-  const stripe = Stripe(res.publishableKey)
+    body: JSON.stringify(data),
+  })
+    .then((res) => res.json())
+    .catch(err => console.error(err))
+  console.log(response)
+  const stripe = await Stripe(response.publishableKey)
 
   const { error } = await stripe.redirectToCheckout({
-    sessionId: res.sessionId
+    sessionId: response.sessionId
   })
 
   if (error) {
@@ -31,10 +34,9 @@ function createTemplate(item) {
   const product = template.content.cloneNode(true)
 
   const img = product.querySelector('img')
-  img.src = item.images[0]
-  img.alt = item.name
-
-  product.querySelector('h2').innerText = item.name
+  img.src = item.product.images[0]
+  img.alt = item.product.name
+  product.querySelector('h2').innerText = item.product.name
   product.querySelector('[name=sku]').value = item.id
 
   const form = product.querySelector('form')
@@ -49,6 +51,6 @@ export async function loadProducts() {
     .then(res => res.json())
     .catch(err => console.error(err))
   prices.data.forEach(price => {
-    main.appendChild(createTemplate(price.product))
+    main.appendChild(createTemplate(price))
   })
 }
