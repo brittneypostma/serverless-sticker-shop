@@ -1,31 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles.css" />
-    <title>Sticker Shop</title>
-  </head>
-  <body>
-    <h1>Sticker Shop</h1>
-    <main>
-      <template id="template">
-        <div class="product">
-          <img src="" alt="" />
-          <h2></h2>
-          <p class="price">$3.00</p>
-          <form action="" method="post">
-            <input type="hidden" name="sku" value="" />
-            <button type="submit">Buy Now</button>
-          </form>
-        </div>
-      </template>
-    </main>
-    <script src="https://js.stripe.com/v3/"></script>
-    <script type="module">
-      import { loadProducts } from './js/load-products.js'
 
-      loadProducts()
-    </script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Meta Tags -->
+  <meta name="description" content="A place to buy ZTM stickers.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#43b979">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Sticker Shop">
+  <meta property="og:description" content="A place to buy ZTM stickers.">
+  <meta property="og:url" content="https://serverless-sticker-shop.netlify.app/">
+  <meta property="og:image" content="./assets/images/og.png">
+  <!-- Site -->
+  <link rel="manifest" href="./assets/site.webmanifest">
+  <link rel="alternate icon" href="./assets/favicon.ico">
+  <!-- Styles -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+  <link rel="stylesheet" href="styles.css" />
+  <title>Sticker Shop</title>
+</head>
+
+<body>
+  <h1>Sticker Shop</h1>
+  <main>
+    <template id="template">
+      <div class="product">
+        <img src="" alt="" />
+        <h2></h2>
+        <p class="price">$3.00</p>
+        <form action="" method="post">
+          <input type="hidden" name="sku" value="" />
+          <button type="submit">Buy Now</button>
+        </form>
+      </div>
+    </template>
+  </main>
+  <script src="https://js.stripe.com/v3/"></script>
+  <script type="module">
+    import { loadProducts } from './js/load-products.js'
+
+    loadProducts()
+  </script>
+</body>
+
 </html>

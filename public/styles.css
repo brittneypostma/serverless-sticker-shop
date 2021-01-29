@@ -1,64 +1,103 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;900&display=swap');
 
-:root {
-  --heading: 'Montserrat', sans-serif;
-  --headingColor: white;
-  --backgroundHover: #47ca82;
-  --background: #43b979;
-  --largeFont: 7vh;
-  --smallFont: 1.25rem;
-  --shadowHover: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --shadowOutline: 0 0 0 3px rgb(237, 33, 105, 0.5);
+body {
+  /** VARIABLES **/
+  /* Colors */
+  --accent: rgb(237, 33, 105);
+  --hover: rgb(71, 202, 130);
+  --primary: rgb(67, 185, 121);
+  --black: rgb(24, 28, 42);
+  --white: rgb(250, 250, 250);
+
+  /* Containers */
+  --width: 80vw;
+  --max-width: 1200px;
+  --row-gap: 0.5rem;
+  --gap: 5rem;
+
+  /* Font Family */
+  --font-heading: 'Montserrat', sans-serif;
+  --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+  /* Font Size */
+  --text-xl: 4rem;
+  --text-lg: 1.75rem;
+  --text-md: 1.5rem;
+  --text-base: 1.25rem;
+
+  /* Shadows */
+  --shadow-sm: 0px 4px 6px -1px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0px 10px 15px -3px rgba(0, 0, 0, 0.25);
+  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-outline: 0 0 0 2px var(--accent);
+
+  /* Transition */
+  --transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Style Intentions */
+  --bg-color: var(--white);
+  --text-color: var(--black);
 }
 
-* {
+@media (min-width: 1024px) {
+  body {
+    --text-xl: 6rem;
+  }
+}
+
+*,
+*::after,
+*::before {
   box-sizing: border-box;
   margin: 0;
-}
-
-html,
-body {
-  height: 100%;
+  padding: 0;
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  min-height: 100vh;
+  background: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-body);
   text-align: center;
+}
+
+img {
+  max-width: 100%;
+  display: block;
 }
 
 h1,
 a,
 button {
   font-weight: 900;
-  font-family: var(--heading);
-  color: var(--headingColor);
+  font-family: var(--font-heading);
+  color: var(--white);
 }
 
 button,
 a {
-  font-size: var(--smallFont);
-  font-family: var(--heading);
+  font-size: var(--text-base);
+  font-family: var(--font-heading);
   transition: all 75ms linear;
   outline: none;
-  padding: 10px;
-  border-radius: 5px;
+  padding: 1rem 4rem;
+  border-radius: 0.25rem;
   border: none;
-  background: var(--background);
-  box-shadow: var(--shadow);
+  background: var(--primary);
+  box-shadow: var(--shadow-md);
 }
 
 button:hover,
 a:hover {
-  background: var(--backgroundHover);
-  box-shadow: var(--shadowHover);
+  background: var(--hover);
+  box-shadow: var(--shadow-sm);
 }
 
 button:focus,
 a:focus {
-  box-shadow: var(--shadowOutline);
+  box-shadow: var(--shadow-outline);
 }
 
 button {
@@ -68,19 +107,17 @@ button {
 
 a {
   justify-self: center;
-  margin: 1rem;
   text-align: center;
   text-decoration: none;
-  font-size: var(--smallFont);
+  font-size: var(--text-base);
 }
 
 h1 {
-  font-family: var(--heading);
-  font-weight: 900;
-  margin: 1rem;
   padding: 1rem;
-  font-size: 7vh;
-  color: var(--headingColor);
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: var(--text-xl);
+  color: var(--white);
   background: linear-gradient(
     160deg,
     #f8e6ed 0%,
@@ -95,29 +132,33 @@ h1 {
 
 h2 {
   text-transform: uppercase;
+  font-size: var(--text-lg);
 }
 
 main {
-  max-width: 1200px;
+  max-width: var(--max-width);
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
+  gap: var(--gap);
   justify-content: center;
 }
 
 p {
-  font-size: 2rem;
+  font-size: var(--text-md);
+  font-weight: 700;
 }
 
 form {
   width: 100%;
+  display: grid;
+  justify-content: center;
 }
 
 .product {
-  margin: 1rem;
   padding: 1rem;
   display: grid;
-  gap: 1rem;
+  gap: var(--row-gap);
   justify-content: center;
   justify-items: center;
   align-items: center;
