@@ -4,7 +4,7 @@ async function handleFormSubmit(event) {
 
   const data = {
     sku: form.get('sku'),
-    quantity: 1
+    quantity: 1,
   }
 
   const response = await fetch('/.netlify/functions/create-checkout', {
@@ -15,19 +15,18 @@ async function handleFormSubmit(event) {
     body: JSON.stringify(data),
   })
     .then((res) => res.json())
-    .catch(err => console.error(err))
+    .catch((err) => console.error(err))
   console.log(response)
   const stripe = await Stripe(response.publishableKey)
 
   const { error } = await stripe.redirectToCheckout({
-    sessionId: response.sessionId
+    sessionId: response.sessionId,
   })
 
   if (error) {
     console.error(error)
   }
 }
-
 
 function createTemplate(item) {
   const template = document.querySelector('#template')
@@ -38,7 +37,9 @@ function createTemplate(item) {
   img.alt = item.product.name
   product.querySelector('h2').innerText = item.product.name
   product.querySelector('[name=sku]').value = item.id
-
+  product.querySelector('.price').innerText = `$${Math.round(
+    item.unit_amount_decimal / 100
+  ).toFixed(2)}`
   const form = product.querySelector('form')
   form.addEventListener('submit', handleFormSubmit)
 
@@ -48,9 +49,9 @@ function createTemplate(item) {
 export async function loadProducts() {
   const main = document.querySelector('main')
   const prices = await fetch('/.netlify/functions/get-products')
-    .then(res => res.json())
-    .catch(err => console.error(err))
-  prices.data.forEach(price => {
+    .then((res) => res.json())
+    .catch((err) => console.error(err))
+  prices.data.forEach((price) => {
     main.appendChild(createTemplate(price))
   })
 }
